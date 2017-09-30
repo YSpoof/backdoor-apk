@@ -8,7 +8,7 @@ exit; }
 
 #NoNgrok
 if( $ARGV[0] eq '-i') {
-$exe=$ARGV[1];
+$apk=$ARGV[1];
 $host=$ARGV[2];
 $port=$ARGV[3];   
 $out=$ARGV[4]; 
