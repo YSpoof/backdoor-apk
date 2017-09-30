@@ -8,6 +8,7 @@ if( $ARGV[0] eq '-h' || $ARGV[0] eq '' || $ARGV[0] eq '--help')
 {
 print "Usage: backdoor-apk <apk> <ip/ddns> <port> <out>\n\n";
 print "Usage: backdoor-apk -n <apk> <ngrok_host> <ngrok_port> <fwdport> <out>\n\n";
+print "Ex: https://github.com/YSpoof/backdoor-apk\n";
 exit;
 }
 
